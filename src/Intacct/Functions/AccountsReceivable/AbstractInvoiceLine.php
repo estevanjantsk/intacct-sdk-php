@@ -18,14 +18,12 @@
 namespace Intacct\Functions\AccountsReceivable;
 
 use Intacct\Functions\Traits\CustomFieldsTrait;
-use Intacct\Functions\Traits\GLDIMValuesTrait;
 use Intacct\Xml\XMLWriter;
 
 abstract class AbstractInvoiceLine
 {
 
     use CustomFieldsTrait;
-    use GLDIMValuesTrait;
 
     /** @var string */
     protected $accountLabel;
