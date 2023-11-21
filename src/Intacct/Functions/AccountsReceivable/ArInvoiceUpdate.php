@@ -42,12 +42,7 @@ class ArInvoiceUpdate extends AbstractInvoice {
 		$xml->writeElement('onhold', $this->isOnHold());
 		$xml->writeElement('description', $this->getDescription());
 		$xml->writeElement('externalid', $this->getExternalId());
-
-		if ($this->getBillToContactName()) {
-			$xml->startElement('billto');
-			$xml->writeElement('contactname', $this->getBillToContactName(), true);
-			$xml->endElement(); //billto
-		}
+		$xml->writeElement('BILLTOPAYTOCONTACTNAME', $this->getBillToContactName());
 
 		if ($this->getShipToContactName()) {
 			$xml->startElement('shipto');

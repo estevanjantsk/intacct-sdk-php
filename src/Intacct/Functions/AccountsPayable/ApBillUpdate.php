@@ -41,11 +41,7 @@ class ApBillUpdate extends AbstractBill {
 		$xml->writeElement('description', $this->getDescription());
 		$xml->writeElement('externalid', $this->getExternalId());
 
-		if ($this->getPayToContactName()) {
-			$xml->startElement('payto');
-			$xml->writeElement('contactname', $this->getPayToContactName());
-			$xml->endElement(); //payto
-		}
+		$xml->writeElement('BILLTOPAYTOCONTACTNAME', $this->getPayToContactName());
 
 		if ($this->getReturnToContactName()) {
 			$xml->startElement('returnto');
