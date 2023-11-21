@@ -17,9 +17,7 @@ class ApBillUpdate extends AbstractBill {
 
 		$xml->writeElement('vendorid', $this->getVendorId(), true);
 
-		$xml->startElement('datecreated');
-		$xml->writeDateSplitElements($this->getTransactionDate());
-		$xml->endElement(); //datecreated
+		$xml->writeElement('WHENCREATED', $this->getTransactionDate()->format('Y-m-d'));
 
 		if ($this->getGlPostingDate()) {
 			$xml->startElement('dateposted');
@@ -28,9 +26,7 @@ class ApBillUpdate extends AbstractBill {
 		}
 
 		if ($this->getDueDate()) {
-			$xml->startElement('datedue');
-			$xml->writeDateSplitElements($this->getDueDate(), true);
-			$xml->endElement(); // datedue
+			$xml->writeElement('WHENDUE', $this->getDueDate()->format('Y-m-d'));
 
 			$xml->writeElement('termname', $this->getPaymentTerm());
 		} else {
@@ -39,8 +35,8 @@ class ApBillUpdate extends AbstractBill {
 
 		$xml->writeElement('action', $this->getAction());
 		$xml->writeElement('batchkey', $this->getSummaryRecordNo());
-		$xml->writeElement('billno', $this->getBillNumber());
-		$xml->writeElement('ponumber', $this->getReferenceNumber());
+		$xml->writeElement('RECORDID', $this->getBillNumber());
+		$xml->writeElement('DOCNUMBER', $this->getReferenceNumber());
 		$xml->writeElement('onhold', $this->isOnHold());
 		$xml->writeElement('description', $this->getDescription());
 		$xml->writeElement('externalid', $this->getExternalId());
