@@ -19,9 +19,7 @@ class ArInvoiceUpdate extends AbstractInvoice {
 
 		$xml->writeElement('customerid', $this->getCustomerId(), true);
 
-		$xml->startElement('datecreated');
-		$xml->writeDateSplitElements($this->getTransactionDate(), true);
-		$xml->endElement(); //datecreated
+		$xml->writeElement('WHENCREATED', $this->getTransactionDate()->format('Y-m-d'));
 
 		if ($this->getGlPostingDate()) {
 			$xml->startElement('dateposted');
@@ -30,9 +28,7 @@ class ArInvoiceUpdate extends AbstractInvoice {
 		}
 
 		if ($this->getDueDate()) {
-			$xml->startElement('datedue');
-			$xml->writeDateSplitElements($this->getDueDate(), true);
-			$xml->endElement(); // datedue
+			$xml->writeElement('WHENDUE', $this->getDueDate()->format('Y-m-d'));
 
 			$xml->writeElement('termname', $this->getPaymentTerm());
 		} else {
@@ -41,8 +37,8 @@ class ArInvoiceUpdate extends AbstractInvoice {
 
 		$xml->writeElement('action', $this->getAction());
 		$xml->writeElement('batchkey', $this->getSummaryRecordNo());
-		$xml->writeElement('invoiceno', $this->getInvoiceNumber());
-		$xml->writeElement('ponumber', $this->getReferenceNumber());
+		$xml->writeElement('RECORDID', $this->getInvoiceNumber());
+		$xml->writeElement('DOCNUMBER', $this->getReferenceNumber());
 		$xml->writeElement('onhold', $this->isOnHold());
 		$xml->writeElement('description', $this->getDescription());
 		$xml->writeElement('externalid', $this->getExternalId());
