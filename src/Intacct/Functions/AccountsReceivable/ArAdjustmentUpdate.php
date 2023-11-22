@@ -25,8 +25,8 @@ class ArAdjustmentUpdate extends AbstractArAdjustment {
 
 		$xml->writeElement('action', $this->getAction());
 		$xml->writeElement('batchkey', $this->getSummaryRecordNo());
-		$xml->writeElement('RECORDID', $this->getInvoiceNumber());
-		$xml->writeElement('DOCNUMBER', $this->getAdjustmentNumber());
+		$xml->writeElement('RECORDID', $this->getAdjustmentNumber());
+		$xml->writeElement('DOCNUMBER', $this->getInvoiceNumber());
 		$xml->writeElement('description', $this->getDescription());
 		$xml->writeElement('externalid', $this->getExternalId());
 
@@ -35,7 +35,7 @@ class ArAdjustmentUpdate extends AbstractArAdjustment {
 
 		$xml->writeElement('nogl', $this->isDoNotPostToGL());
 
-		$xml->startElement('arajustmentitems');
+		$xml->startElement('aradjustmentitems');
 		if (count($this->getLines()) > 0) {
 			foreach ($this->getLines() as $line) {
 				$line->writeXml($xml);
