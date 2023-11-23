@@ -30,7 +30,7 @@ class ArAdjustmentLineUpdate extends AbstractArAdjustmentLine {
 	 * @param XMLWriter $xml
 	 */
 	public function writeXml(XMLWriter &$xml) {
-		$xml->startElement('arajustmentitem');
+		$xml->startElement('aradjustmentitem');
 
 		if (!empty($this->getAccountLabel())) {
 			$xml->writeElement('accountlabel', $this->getAccountLabel(), true);
