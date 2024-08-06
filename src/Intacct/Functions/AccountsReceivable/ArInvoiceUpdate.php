@@ -22,6 +22,8 @@ class ArInvoiceUpdate extends AbstractInvoice {
 		$xml->writeElement('WHENCREATED', $this->getTransactionDate()->format('Y-m-d'));
 
 		if ($this->getGlPostingDate()) {
+			$xml->writeElement('WHENPOSTED', $this->getGlPostingDate()->format('Y-m-d'));
+
 			$xml->startElement('dateposted');
 			$xml->writeDateSplitElements($this->getGlPostingDate(), true);
 			$xml->endElement(); //dateposted
